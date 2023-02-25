@@ -2,8 +2,6 @@ const router = require('express').Router()
 const path = require("path");
 const fs = require("fs");
 
-const uniqid = require("uniqid");
-
 const dbPath = path.join(__dirname, "..", "db", "db.json");
 
 router.get('/', (req, res) => {
