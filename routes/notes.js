@@ -28,7 +28,27 @@ router.post('/notes', (req, res) => {
         if (err) {
             res.status(500).json(err);
             return;
-        
+        }
         const notes = JSON.parse(data);
 
-        module.exports = router;
+        //res.json(json);
+        const newNote = {
+            title: req.body.title,
+            text: req.body.text,
+            id: uniqid(),
+        };
+        notes.push(newNote);
+
+        fs.writeFile(dbPath, JSON.stringify(notes), function (err) {
+            if (err) {
+                res.status(500).json(err);
+                return;
+            }
+            res.status(200).json(notes);
+        });
+    });
+    });
+
+const notes = JSON.parse(data);
+
+module.exports = router;
