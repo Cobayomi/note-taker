@@ -47,8 +47,23 @@ router.post('/notes', (req, res) => {
             res.status(200).json(notes);
         });
     });
-    });
+});
+router.delete("/notes/:id", (req, res) => {
+    const id = req.params.id;
+    if (!id) {
+        return res.status(400).json({ error: "We need an id" });
+    }
 
-const notes = JSON.parse(data);
+    fs.readFile(dbPath, "utf8", function (err, data) {
+        const note = JSON.parse(data);
+        const updateNotes = note.filter((item) => item.id != req.params.id);
+        fs.writeFile(dbPath, JSON.stringify(updateNotes), function (err) {
+            if (err) {
+                return res.status(500).json(err);
+            }
+            res.json(true);
+        });
+    });
+});
 
 module.exports = router;
