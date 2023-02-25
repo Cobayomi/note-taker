@@ -1,16 +1,14 @@
 const express = require ('express')
-const app = express
-const PORT = 300
-
+const app = express()
+const PORT = 3000
+const routes = require("./routes")
+const path = require("path")
 
 app.use(express.static("public"));
 app.use(express.json());
 
 app.use(routes);
 
-app.listen(PORT, () => {
-  console.log(`Server listening at http://localhost:${PORT}`);
-});
 
 // GET API ROUTES
 app.get("/api/notes", (req, res) => {
@@ -22,7 +20,7 @@ app.get("/api/notes", (req, res) => {
 
 // post
 app.post("/api/notes", (req, res) => {
-    const {title, text} = req.body;/
+    const {title, text} = req.body;
     if (!title || !text){
         res.status(400).json({error: "Required field empty."})
         return
