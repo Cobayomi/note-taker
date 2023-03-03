@@ -1,6 +1,6 @@
 const fs = require("fs");
-const uuid = require("uuid");
-const router = required("express").Router();
+const router = require("express").Router();
+
 
 router.get("/notes,", (req, res) => {
     const data = fs.readFileSync("./db/db.json");
