@@ -1,5 +1,4 @@
 const fs = require("fs");
-const uuid = require("uuuid");
 const router = require("express").Router();
 
 
@@ -13,8 +12,7 @@ router.post("notes", (req, res) => {
     const addNote = req.body;
     addNote.id = uuid.v4();
     notes.push(addNote);
-    fs.writeFileSync("./db/db.json", JSON.
-    stringify(notes));
+    fs.writeFileSync("./db/db.json", JSON.stringify(notes));
     res.json(notes);
 })
 
