@@ -10,10 +10,6 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static("public"));
 
-app.get("/api/notes", (req, res) => {
-  res.sendFile(path.join(_dirname, "/db/db.json"))
-});
-
 app.listen(PORT, () => {
   console.log(`Server listening at http://localhost:${PORT}`)
 });
